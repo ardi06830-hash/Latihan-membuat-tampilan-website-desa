@@ -520,3 +520,66 @@ footer{
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+.image-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.85);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+.image-modal.active {
+    display: flex;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 90vh;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Tombol X */
+
+.modal-close {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    font-size: 32px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10000;
+
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}

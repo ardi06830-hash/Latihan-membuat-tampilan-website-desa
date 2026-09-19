@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- Link yang masih dekoratif (href="#") kasih toast, jangan lompat ke atas halaman ----
+  // ---- Link yang masih dekoratif (href="#") kasih toast ----
   document.querySelectorAll('a[href="#"]').forEach(a => {
     a.addEventListener('click', function(e){
       e.preventDefault();
@@ -41,6 +41,46 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       showToast('Komentar berhasil dikirim, namun masih belum tersampaikan kepada kami karena ini hanya demo tampilan.');
       form.reset();
+    });
+  }
+
+  // ---- POPUP GAMBAR BERITA ----
+  const imageWrappers = document.querySelectorAll('.berita-card .thumb');
+  const imageModal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalClose = document.getElementById('modalClose');
+
+  if (imageModal && modalImage && modalClose) {
+
+    imageWrappers.forEach(function (wrapper) {
+      wrapper.style.cursor = 'pointer';
+      wrapper.addEventListener('click', function () {
+        const image = wrapper.querySelector('img');
+        if (!image) return;
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    modalClose.addEventListener('click', function () {
+      imageModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    imageModal.addEventListener('click', function (e) {
+      if (e.target === imageModal) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   }
 
